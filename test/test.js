@@ -954,4 +954,10 @@ describe('sanitizeHtml', function() {
       '<div>&lt;wiggly&gt;Hello<p>World</p>&lt;tiggly&gt;JS&lt;/tiggly&gt;&lt;/wiggly&gt;</div>'
     );
   });
+  it('should permit comments with flag', function() {
+    assert.equal(
+      sanitizeHtml('<div><!-- This is a comment -->Text<!-- comment 2 --><!-- comment 3 --></div>', { permitComments: true }),
+      '<div><!-- This is a comment -->Text<!-- comment 2 --><!-- comment 3 --></div>'
+    )
+  })
 });

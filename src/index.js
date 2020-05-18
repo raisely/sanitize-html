@@ -443,6 +443,16 @@ function sanitizeHtml(html, options, _recursing) {
         result = tempResult + escapeHtml(result);
         tempResult = '';
       }
+    },
+    oncomment(data) {
+      if (options.permitComments) {
+        result += '<!--' + data;
+      }
+    },
+    oncommentend: function() {
+      if (options.permitComments) {
+        result += '-->';
+      }
     }
   }, options.parser);
   parser.write(html);
